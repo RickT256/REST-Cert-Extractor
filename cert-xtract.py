@@ -74,27 +74,12 @@ print("Number of CA Certificates: ", srcCertListCnt)
 print("\nCA Certificates\n")
 
 for cert in srcCertList:
-    print("Subject: %s\n  Issuer: %s\n" %(cert['subject'], cert['issuer']) )
-
-# --------- Encrypt Something --------------------------
-print("\n --- Let's try some Encryption... ---\n")
-
-t_plaintext = "Robinson"
-
-jsonPlaintext   = {
-    "id": "Alice-Eng-Key",
-    "plaintext": t_plaintext,
-    "mode": "CBC",
-    "iv": "Cd7m6CWhC389DDVtJmW4bw=="
-    }
-
-jsonCiphertext  = getCiphertext(srcHost, srcPort, srcAuthStr, jsonPlaintext)
-    
-print("Plaintext: %s\nCiphertext: %s" %(t_plaintext, jsonCiphertext))
+    # print("Subject: %s\n  Issuer: %s\n" %(cert['subject'], cert['issuer']) )
+    print(json.dumps(cert, indent=2))
 
 
 # --------- Check Client Health --------------------------
-print("\n --- Let's check client health... ---\n")
+print("\n --- Separate from the CA Cert extraction, let's check client health... ---\n")
 
 jsonClients  = getClientInfo(srcHost, srcPort, srcAuthStr)
 
